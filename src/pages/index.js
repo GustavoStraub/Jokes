@@ -3,37 +3,27 @@ import axios from 'axios'
 
 export default function index() {
 
-  const [Piadas, setPiadas] = useState()
-  const [Piadas2, setPiadas2] = useState()
-  const [Piadas3, setPiadas3] = useState()
+  const [Piadas, setPiadas] = useState({})
+
   const [Nova, setNova] = useState(true)
 
-  function reset () {
-     if(Nova === true) {
-       setNova(false)
-     }
-     else{
-       setNova(true)
-     }
-  }
+
   useEffect(() => {
     axios.get('https://sv443.net/jokeapi/category/any')
     .then(function (response) {
-      setPiadas(response.data.joke)
-      setPiadas2(response.data.setup)
-      setPiadas3(response.data.delivery)
+      setPiadas(response.data)
     })
   
   },[Nova])
   console.log("aqui",Piadas)
   return (
     <div>
-    {Piadas}
-    {Piadas2}
+    {Piadas.joke}
+    {Piadas.setup}
     <div>
-    {Piadas3}
+    {Piadas.delivery}
     </div>
-    <button onClick={reset}>New Joke</button>
+    <button onClick={() => setNova(!Nova)}>New Joke</button>
     </div>
   )
 }
