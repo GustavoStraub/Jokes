@@ -6,6 +6,16 @@ export default function index() {
   const [Piadas, setPiadas] = useState()
   const [Piadas2, setPiadas2] = useState()
   const [Piadas3, setPiadas3] = useState()
+  const [Nova, setNova] = useState(true)
+
+  function reset () {
+     if(Nova === true) {
+       setNova(false)
+     }
+     else{
+       setNova(true)
+     }
+  }
   useEffect(() => {
     axios.get('https://sv443.net/jokeapi/category/any')
     .then(function (response) {
@@ -13,8 +23,8 @@ export default function index() {
       setPiadas2(response.data.setup)
       setPiadas3(response.data.delivery)
     })
-
-  },[])
+  
+  },[Nova])
   console.log("aqui",Piadas)
   return (
     <div>
@@ -23,6 +33,7 @@ export default function index() {
     <div>
     {Piadas3}
     </div>
+    <button onClick={reset}>New Joke</button>
     </div>
   )
 }
