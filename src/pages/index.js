@@ -80,6 +80,7 @@ background-color: ${props => props.background};
         <Button background="#b6d1a9" onClick={() => setCor("#dcffcc")}>Light Green</Button>
         <Button background="#d1c7b8" onClick={() => setCor("#fff4e4")}>Pastel</Button>
       </Buttons>
+      {/* ahsud */}
       <style global jsx>{`
         body {
           margin: 0;
